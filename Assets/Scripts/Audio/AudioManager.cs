@@ -5,7 +5,10 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour {
 
     [Header("Number of heartz, should be a value of 2")]
-    public int numberHertz;
+    public int hertz = 512;
+
+    [Header("Number of frequency, should be a value of 2")]
+    public int frequency = 8;
 
     public static AudioManager Instance;
 

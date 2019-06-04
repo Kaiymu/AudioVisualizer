@@ -11,7 +11,7 @@ public class AudioPeer : MonoBehaviour {
     private AudioSource _audioSource;
 
     private void Start () {
-        samples = new float[AudioManager.Instance.numberHertz];
+        samples = new float[AudioManager.Instance.hertz];
         _audioSource = GetComponent<AudioSource>();
     }
 	

@@ -5,9 +5,9 @@ using UnityEngine;
 public class ParamPrefab : MonoBehaviour {
 
     public int band;
-    public float _startScale, _scaleMultiplier;
+    public float startScale, scaleMultiplier;
 	
 	void Update () {
-        transform.localScale = new Vector3(transform.localScale.x, (AudioPeer.freqBand[band] * _scaleMultiplier) + _startScale, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, (AudioPeer.freqBand[band] * scaleMultiplier) + startScale, transform.localScale.z);
     }
 }

@@ -11,19 +11,19 @@ public class VisualizeCube : MonoBehaviour {
 
     private List<GameObject> _samplePrefabs;
 
-	private void Awake () {
+	private void Start () {
 
         // Dividing the heartz by the number of elements, to get a perfect circle
-        float rotationPerBeats = (float)AudioManager.Instance.numberHertz / 360;
+        float rotationPerBeats = (float)AudioManager.Instance.hertz / 360;
         _samplePrefabs = new List<GameObject>();
 
-        for (int i = 0; i < AudioManager.Instance.numberHertz; i++) {
+        for (int i = 0; i < AudioManager.Instance.hertz; i++) {
             var o = Instantiate(cubePrefab);
             o.transform.position = transform.position;
             o.transform.parent = transform;
             o.name = o.name + " " + i;
             transform.eulerAngles = new Vector3(0, -rotationPerBeats * i, 0f);
-            o.transform.position = Vector3.forward * 100;
+            o.transform.position = Vector3.forward * 10;
             _samplePrefabs.Add(o);
         }
 	}
