@@ -5,12 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class AudioPeer : MonoBehaviour {
 
-    public static float[] samples = new float[512];
+    public static float[] samples;
     public static float[] freqBand = new float[8];
 
     private AudioSource _audioSource;
 
-    void Start () {
+    private void Start () {
+        samples = new float[AudioManager.Instance.numberHertz];
         _audioSource = GetComponent<AudioSource>();
     }
 	

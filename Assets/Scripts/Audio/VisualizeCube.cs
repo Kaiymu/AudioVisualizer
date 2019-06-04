@@ -8,26 +8,32 @@ public class VisualizeCube : MonoBehaviour {
     public float maximumScale = 10f;
     public float maxColor = 1f;
 
-    private List<GameObject> _sampleCubeList = new List<GameObject>(512);
 
-	void Start () {
-		for(int i = 0; i < 512; i++) {
+    private List<GameObject> _samplePrefabs;
+
+	private void Awake () {
+
+        // Dividing the heartz by the number of elements, to get a perfect circle
+        float rotationPerBeats = (float)AudioManager.Instance.numberHertz / 360;
+        _samplePrefabs = new List<GameObject>();
+
+        for (int i = 0; i < AudioManager.Instance.numberHertz; i++) {
             var o = Instantiate(cubePrefab);
             o.transform.position = transform.position;
             o.transform.parent = transform;
-            o.name = "Cube " + i;
-            transform.eulerAngles = new Vector3(0, -0.703125f * i, 0f);
+            o.name = o.name + " " + i;
+            transform.eulerAngles = new Vector3(0, -rotationPerBeats * i, 0f);
             o.transform.position = Vector3.forward * 100;
-            _sampleCubeList.Add(o);
+            _samplePrefabs.Add(o);
         }
 	}
 
-    void Update() {
-        if (_sampleCubeList == null)
+    private void Update() {
+        if (_samplePrefabs == null)
             return;
 
-        for (int i = 0; i < _sampleCubeList.Count; i++) {
-            var sampleCube = _sampleCubeList[i];
+        for (int i = 0; i < _samplePrefabs.Count; i++) {
+            var sampleCube = _samplePrefabs[i];
             sampleCube.transform.localScale = new Vector3(1, (AudioPeer.samples[i] * maximumScale) + 2, 1);
             float baseColor = (AudioPeer.samples[i] * maxColor);
             float red = Mathf.Cos(baseColor);
