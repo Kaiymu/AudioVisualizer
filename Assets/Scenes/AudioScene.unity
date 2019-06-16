@@ -412,6 +412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frequencyPrefab: {fileID: 1910272115241006, guid: c1702416693ed9e43a80c74cfc76cb0f,
     type: 2}
+  useBuffer: 1
 --- !u!4 &1248216444
 Transform:
   m_ObjectHideFlags: 0

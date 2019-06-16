@@ -6,6 +6,8 @@ public class SpawnFrequence : MonoBehaviour {
 
     public GameObject frequencyPrefab;
 
+    public bool useBuffer;
+
     private void Start() {
         for(int i = 0; i < AudioManager.Instance.frequency; i++) {
             var o = Instantiate(frequencyPrefab);
@@ -14,7 +16,8 @@ public class SpawnFrequence : MonoBehaviour {
             var paramPrefab = o.AddComponent<ParamPrefab>();
             paramPrefab.band = i;
             paramPrefab.startScale = 1;
-            paramPrefab.scaleMultiplier = 10;
+            paramPrefab.scaleMultiplier = 50;
+            paramPrefab.useBuffer = useBuffer;
         }
     }
 

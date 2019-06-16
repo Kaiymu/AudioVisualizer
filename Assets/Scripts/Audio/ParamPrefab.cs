@@ -6,8 +6,10 @@ public class ParamPrefab : MonoBehaviour {
 
     public int band;
     public float startScale, scaleMultiplier;
+    public bool useBuffer;
 	
 	void Update () {
-        transform.localScale = new Vector3(transform.localScale.x, (AudioPeer.freqBand[band] * scaleMultiplier) + startScale, transform.localScale.z);
+        float fredOrBandBuffer = useBuffer ? AudioPeer.bandBuffer[band] : AudioPeer.freqBand[band];
+        transform.localScale = new Vector3(transform.localScale.x, (fredOrBandBuffer * scaleMultiplier) + startScale, transform.localScale.z);
     }
 }
