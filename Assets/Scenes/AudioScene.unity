@@ -137,7 +137,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 391736724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8f9950606fdade644b8d0b7cf422b774, type: 3}
   m_Name: 
@@ -264,6 +264,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b86ae0d9851e88d4a8a0a1dfbbf24eed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &529060570
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 529060572}
+  - component: {fileID: 529060571}
+  m_Layer: 0
+  m_Name: SpawnFrequencyRed
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &529060571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529060570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bbb86579ec915e4c8b9d57735286edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  frequencyPrefab: {fileID: 1784043513353178, guid: e521d8ec1a87c7e40aa39871c0f4dbdc,
+    type: 2}
+  useBuffer: 1
+--- !u!4 &529060572
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 529060570}
+  m_LocalRotation: {x: -0.12704517, y: -0, z: -0, w: 0.9918969}
+  m_LocalPosition: {x: -54.73, y: 45.26, z: -300.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: -14.598001, y: 0, z: 0}
 --- !u!1 &643098436
 GameObject:
   m_ObjectHideFlags: 0
@@ -393,7 +436,7 @@ GameObject:
   - component: {fileID: 1248216444}
   - component: {fileID: 1248216443}
   m_Layer: 0
-  m_Name: SpawnFrequency
+  m_Name: SpawnFrequencyBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

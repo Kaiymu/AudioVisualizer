@@ -6,21 +6,31 @@ using UnityEngine;
 public class AudioPeer : MonoBehaviour {
 
     public static float[] samples;
-    public static float[] freqBand = new float[8];
-    public static float[] bandBuffer = new float[8];
+    private float[] freqBand = new float[8];
+    private float[] bandBuffer = new float[8];
 
     private float[] _bufferDecrease = new float[8];
+
+    private float[] _freqBandHighest = new float[8];
+    public static float[] audioBand = new float[8];
+    public static float[] audioBandBuffer = new float[8];
     private AudioSource _audioSource;
 
     private void Start () {
         samples = new float[AudioManager.Instance.hertz];
         _audioSource = GetComponent<AudioSource>();
+
+        _GetSpectrumAudioSource();
+        _MakeFrequencyBands();
+        _BandBuffer();
+        _CreateAudiobands();
     }
 	
 	void Update () {
         _GetSpectrumAudioSource();
         _MakeFrequencyBands();
         _BandBuffer();
+        _CreateAudiobands();
     }
 
     private void _GetSpectrumAudioSource() {
@@ -38,6 +48,22 @@ public class AudioPeer : MonoBehaviour {
                 bandBuffer[i] -= _bufferDecrease[i];
                 _bufferDecrease[i] *= 1.2f;
             }
+        }
+    }
+
+    private void _CreateAudiobands() {
+        for (int i = 0; i < 8; i++) {
+            if (freqBand[i] > _freqBandHighest[i]) {
+                _freqBandHighest[i] = freqBand[i];
+            }
+
+            audioBand[i] = (freqBand[i] / _freqBandHighest[i]);
+            if(bandBuffer[i] == 0 && _freqBandHighest[i] == 0) {
+                audioBandBuffer[i] = 0f;
+            } else {
+                audioBandBuffer[i] = (bandBuffer[i] / _freqBandHighest[i]);
+            }
+
         }
     }
 
