@@ -6,8 +6,7 @@ public class ParamPrefab : MonoBehaviour {
 
     public int band;
     public float startScale, scaleMultiplier;
-    public bool useBuffer;
-
+    public bool useBufferFreq;
     private Material _material;
 
     private void Start() {
@@ -15,10 +14,10 @@ public class ParamPrefab : MonoBehaviour {
     }
 
     private void Update () {
-        float fredOrBandBuffer = useBuffer ? AudioPeer.audioBandBuffer[band] : AudioPeer.audioBand[band];
-        Color color = new Color(fredOrBandBuffer, fredOrBandBuffer, fredOrBandBuffer);
+        float freqOrBandBuffer = useBufferFreq ? AudioPeer.audioBandBuffer[band] : AudioPeer.audioBand[band];
+        Color color = new Color(freqOrBandBuffer, freqOrBandBuffer, freqOrBandBuffer);
         _material.SetColor("_EmissionColor", color);
 
-        transform.localScale = new Vector3(transform.localScale.x, (fredOrBandBuffer * scaleMultiplier) + startScale, transform.localScale.z);
+        transform.localScale = new Vector3(transform.localScale.x, (freqOrBandBuffer * scaleMultiplier) + startScale, transform.localScale.z);
     }
 }

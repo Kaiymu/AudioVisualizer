@@ -17,7 +17,7 @@ public class SpawnFrequence : MonoBehaviour {
             paramPrefab.band = i;
             paramPrefab.startScale = 1;
             paramPrefab.scaleMultiplier = 5;
-            paramPrefab.useBuffer = useBuffer;
+            paramPrefab.useBufferFreq = useBuffer;
         }
     }
 
