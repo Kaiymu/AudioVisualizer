@@ -11,12 +11,13 @@ public class AudioPeer : MonoBehaviour {
 
     private float[] _bufferDecrease = new float[8];
 
-    private float[] _freqBandHighest = new float[8];
+    public float[] _freqBandHighest = new float[8];
     public static float[] audioBand = new float[8];
     public static float[] audioBandBuffer = new float[8];
 
     public static float amplitude, amplitudeBuffer;
     private float _amplitudeHighest;
+    public float audioProfile;
 
     private AudioSource _audioSource;
 
@@ -28,6 +29,7 @@ public class AudioPeer : MonoBehaviour {
         _MakeFrequencyBands();
         _BandBuffer();
         _CreateAudiobands();
+        _AudioProfile(audioProfile);
     }
 	
 	void Update () {
@@ -36,6 +38,13 @@ public class AudioPeer : MonoBehaviour {
         _BandBuffer();
         _CreateAudiobands();
         _GetAmplitude();
+    }
+
+    private void _AudioProfile(float audioProfile) {
+        for(int i = 0; i < 8; i++) {
+
+            _freqBandHighest[i] = audioProfile;
+        }
     }
 
     private void _GetSpectrumAudioSource() {
@@ -80,12 +89,7 @@ public class AudioPeer : MonoBehaviour {
             }
 
             audioBand[i] = (freqBand[i] / _freqBandHighest[i]);
-            if(bandBuffer[i] == 0 && _freqBandHighest[i] == 0) {
-                audioBandBuffer[i] = 0f;
-            } else {
-                audioBandBuffer[i] = (bandBuffer[i] / _freqBandHighest[i]);
-            }
-
+            audioBandBuffer[i] = (bandBuffer[i] / _freqBandHighest[i]);
         }
     }
 
