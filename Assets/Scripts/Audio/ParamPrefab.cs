@@ -14,7 +14,7 @@ public class ParamPrefab : MonoBehaviour {
     }
 
     private void Update () {
-        float freqOrBandBuffer = useBufferFreq ? AudioPeer.audioBandBuffer[band] : AudioPeer.audioBand[band];
+        float freqOrBandBuffer = AudioPeer.GetFreqOrBandBuffer(useBufferFreq, band);
         Color color = new Color(freqOrBandBuffer, freqOrBandBuffer, freqOrBandBuffer);
         _material.SetColor("_EmissionColor", color);
 

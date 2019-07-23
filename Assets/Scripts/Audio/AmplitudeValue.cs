@@ -11,7 +11,6 @@ public class AmplitudeValue : MonoBehaviour {
 
     private Material _material;
 
-
     private void Start() {
         _material = GetComponent<MeshRenderer>().material;
     }
@@ -21,7 +20,7 @@ public class AmplitudeValue : MonoBehaviour {
     }
 
     private void _GetAmplitudeValue() {
-        float amplitudeOrAmplitudeBuffer = userBufferAmplitude ? AudioPeer.amplitudeBuffer : AudioPeer.amplitude;
+        float amplitudeOrAmplitudeBuffer = AudioPeer.GetAmplitudeOrBuffer(userBufferAmplitude);
         Color color = new Color(red * amplitudeOrAmplitudeBuffer, green * amplitudeOrAmplitudeBuffer, blue * amplitudeOrAmplitudeBuffer);
         _material.SetColor("_EmissionColor", color);
 

@@ -21,7 +21,7 @@ public class AudioPeer : MonoBehaviour {
 
     private AudioSource _audioSource;
 
-    private void Start () {
+    private void Start() {
         samples = new float[AudioManager.Instance.hertz];
         _audioSource = GetComponent<AudioSource>();
 
@@ -31,8 +31,8 @@ public class AudioPeer : MonoBehaviour {
         _CreateAudiobands();
         _AudioProfile(audioProfile);
     }
-	
-	void Update () {
+
+    void Update() {
         _GetSpectrumAudioSource();
         _MakeFrequencyBands();
         _BandBuffer();
@@ -41,7 +41,7 @@ public class AudioPeer : MonoBehaviour {
     }
 
     private void _AudioProfile(float audioProfile) {
-        for(int i = 0; i < 8; i++) {
+        for (int i = 0; i < 8; i++) {
 
             _freqBandHighest[i] = audioProfile;
         }
@@ -55,12 +55,12 @@ public class AudioPeer : MonoBehaviour {
 
         float currentAmplitude = 0f;
         float currentAmplitudeBuffer = 0f;
-        for(int i = 0; i < audioBand.Length; i++) {
+        for (int i = 0; i < audioBand.Length; i++) {
             currentAmplitude += audioBand[i];
             currentAmplitudeBuffer += audioBandBuffer[i];
         }
 
-        if(currentAmplitude > _amplitudeHighest) {
+        if (currentAmplitude > _amplitudeHighest) {
             _amplitudeHighest = currentAmplitude;
         }
 
@@ -69,7 +69,7 @@ public class AudioPeer : MonoBehaviour {
     }
 
     private void _BandBuffer() {
-        for(int i = 0; i < 8; ++i) {
+        for (int i = 0; i < 8; ++i) {
             if (freqBand[i] > bandBuffer[i]) {
                 bandBuffer[i] = freqBand[i];
                 _bufferDecrease[i] = 0.005f;
@@ -100,11 +100,11 @@ public class AudioPeer : MonoBehaviour {
             float average = 0;
             int sampleCount = (int)Mathf.Pow(2, i) * 2;
 
-            if(i == 7) {
+            if (i == 7) {
                 sampleCount += 2;
             }
 
-            for(int j = 0; j < sampleCount; j++) {
+            for (int j = 0; j < sampleCount; j++) {
                 average += samples[count] * (count + 1);
                 count++;
             }
@@ -113,5 +113,13 @@ public class AudioPeer : MonoBehaviour {
 
             freqBand[i] = average * 10;
         }
+    }
+
+    public static float GetFreqOrBandBuffer(bool freqOrBand, int band) {
+        return freqOrBand ? audioBandBuffer[band] : audioBand[band];
+    }
+
+    public static float GetAmplitudeOrBuffer(bool userBufferAmplitude) {
+        return userBufferAmplitude ? amplitudeBuffer : amplitude;
     }
 }
